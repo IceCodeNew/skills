@@ -1,6 +1,6 @@
 ---
 name: testing-discipline
-description: How to write tests worth keeping. Use whenever writing or reviewing any test — an intent (end-to-end) test during development, a regression test for a bug fix, or unit tests when a feature is finalized for release. Covers which tests are necessary, where they go, and the red-green loop.
+description: How to write tests worth keeping. Use when writing or reviewing any test: an intent (end-to-end) test during development, a regression test for a bug fix, or unit tests at release. Covers which tests are necessary at each stage, where they go, and the red-green loop.
 ---
 
 # Testing Discipline
@@ -10,7 +10,7 @@ The global prompt decides *when* each kind of test is written; this skill decide
 ## Which stage, which tests
 
 - During development: intent tests only. For each requirement, a minimal set of black-box end-to-end tests asserting the user-visible outcome. No unit tests.
-- Bug fixes during development: prove the bug and the fix with a repro or an intent-level regression test (behavior through the public interface). The suite-level unit regression test is deferred to release, like other unit tests.
+- Bug fixes during development: prove the bug and the fix with a repro or an intent-level regression test (behavior through the public interface). The unit regression test for the suite is deferred to release, like other unit tests.
 - At release, when the feature is finalized: add the unit tests that pin behavior worth pinning, selected by the seam rules below — not blanket coverage.
 
 ## What a good test is

@@ -1,10 +1,18 @@
 # skills
 
-Personal LLM agent skills, one skill per directory.
+Personal skills for LLM agents. One directory holds one skill, and the `SKILL.md` in that directory is the entry point.
 
-| Directory | Skill |
+## Skills
+
+| Directory | What it does |
 |---|---|
-| `code-review-page/` | Build a dark-mode-aware, block-level HTML code review page for one or more PRs: annotated diffs, complexity hotspots, anti-pattern highlighting, and an agent-ready implementation prompt. |
-| `testing-discipline/` | How to write tests worth keeping: which tests are necessary at each stage (intent tests during development, unit tests at release), where they go, and the red-green loop. |
+| `code-review-page/` | Builds an HTML code review page for one or more pull requests: annotated diffs, complexity hotspots, anti-pattern highlighting, and an implementation prompt for the agent that acts on the review. |
+| `testing-discipline/` | Sets which tests to write at each stage: intent tests during development, unit tests when a feature is finalized for release. Covers seams, expected values, the red-green loop, and mocking. |
 
-Each skill is self-contained in its directory, with its `SKILL.md` as the entry point.
+## Use a skill
+
+Copy or link the skill's directory into the skills folder of your agent. The agent reads `SKILL.md` at the start of a session and applies the skill when a task matches its description.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

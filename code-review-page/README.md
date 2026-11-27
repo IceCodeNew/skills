@@ -8,19 +8,6 @@ per-block question inputs, and light/dark themes.
 This directory contains both the renderer and the agent-facing skill, so a
 review can be reproduced end to end from this directory.
 
-## Contents
-
-| Path | Purpose |
-|---|---|
-| `SKILL.md` | Agent workflow and non-negotiable review requirements |
-| `references/` | Requirements, QA checklist, anti-pattern list, prompt template, data schema |
-| `review_page.py` | CLI: parse a diff, resolve anchors to blocks, render the page |
-| `assets/theme.css` | Light/dark shell: layout, annotations, notes, prompt, ask UI |
-| `assets/app.js` | Theme toggle, note/wire layout, filters, ask composer, prompt copy |
-| `assets/theme-init.js` | Pre-paint theme selection (no flash) |
-| `qa.mjs` | Light/dark/desktop/mobile QA: contrast, overflow, wires, persistence |
-| `schema.md` | Data-module schema (`GROUPS`, `ANTI`, `FILES`, `REVIEW`) |
-
 ## Quick start
 
 1. Read [`SKILL.md`](SKILL.md) and the references.
@@ -41,7 +28,7 @@ python3 review_page.py \
   --output review.html
 ```
 
-5. QA in **both** themes:
+5. QA in both themes:
 
 ```bash
 PLAYWRIGHT_CORE=/path/to/playwright-core/index.mjs \
@@ -51,9 +38,23 @@ node qa.mjs \
   --out /tmp/review-qa
 ```
 
-`qa.mjs` exits non-zero on console errors, horizontal overflow, note/wire/badge/
-ask mismatch, a broken theme toggle/persistence, an irrelevant anti-filter, or
-text below 4.5:1 contrast. Dark desktop and dark mobile are mandatory checks.
+`qa.mjs` exits non-zero on console errors, horizontal overflow, or a
+note/wire/badge/ask mismatch. It also fails on a broken theme toggle or
+persistence, an irrelevant anti-filter, or text below 4.5:1 contrast.
+Dark desktop and dark mobile are mandatory checks.
+
+## Contents
+
+| Path | Purpose |
+|---|---|
+| `SKILL.md` | Agent workflow and non-negotiable review requirements |
+| `references/` | Requirements, QA checklist, anti-pattern list, prompt template, data schema |
+| `review_page.py` | CLI: parse a diff, resolve anchors to blocks, render the page |
+| `assets/theme.css` | Light/dark shell: layout, annotations, notes, prompt, ask UI |
+| `assets/app.js` | Theme toggle, note/wire layout, filters, ask composer, prompt copy |
+| `assets/theme-init.js` | Pre-paint theme selection (no flash) |
+| `qa.mjs` | Light/dark/desktop/mobile QA: contrast, overflow, wires, persistence |
+| `schema.md` | Data-module schema (`GROUPS`, `ANTI`, `FILES`, `REVIEW`) |
 
 ## CLI inputs
 
@@ -80,10 +81,10 @@ text below 4.5:1 contrast. Dark desktop and dark mobile are mandatory checks.
 
 ## Privacy
 
-This repository intentionally contains **no review data, no repository names,
-no commit SHAs, no credentials, and no internal paths**. Bring your own data
+This directory ships without review data: it contains no repository names,
+no commit SHAs, no credentials, and no internal paths. Bring your own data
 module and prompt; do not commit generated review pages or secrets.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See the [LICENSE](../LICENSE) at the repository root.
