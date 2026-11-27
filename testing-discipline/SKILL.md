@@ -1,6 +1,6 @@
 ---
 name: testing-discipline
-description: How to write tests worth keeping. Use when writing or reviewing any test: an intent (end-to-end) test during development, a regression test for a bug fix, or unit tests at release. Covers which tests are necessary at each stage, where they go, and the red-green loop.
+description: "How to write tests worth keeping. Use when writing or reviewing any test: an intent (end-to-end) test during development, a regression test for a bug fix, or unit tests at release. Covers which tests are necessary at each stage, where they go, and the red-green loop."
 ---
 
 # Testing Discipline
@@ -22,6 +22,10 @@ Tests verify behavior through public interfaces, not implementation details. Cod
 A seam is the public boundary you test at: the interface where behavior is observed without reaching inside. Tests live at seams, never against internals.
 
 You can't test everything. Choose seams on the critical paths and the complex logic, not every edge case. Prefer, in order: an integration seam (proves two modules cooperate) over a high fan-in symbol over a leaf function. For each proposed seam, note in one line what it catches and what it misses. When fixing a bug, draw the contract from the outside: read the callers to learn the preconditions and argument shapes they actually rely on, and write the test against that observed contract.
+
+## The necessity gate
+
+Before adding a test, answer three questions: what observable behavior, invariant, or independent contract does it protect; what credible regression would make it fail; and why the existing proof misses it. A test with no answer to the second question pins nothing. A contract gets one primary test at its strongest boundary: do not replay the same regression at every layer it crosses, and add a second layer only for a distinct transport or lifecycle risk.
 
 ## Expected values come from an independent source
 
@@ -46,6 +50,9 @@ Where any rule in this skill can be enforced mechanically, encode it as a lint o
 - Implementation-coupled: mocks internal collaborators, tests private methods, asserts on call counts or order, or verifies through a side channel (querying the database instead of using the interface). The tell: the test breaks when you refactor but behavior hasn't changed.
 - Tautological: the assertion recomputes the expected value the way the code does, or asserts a constant equal to itself.
 - Hollow green: a test that passes without exercising the real path — skipped cases, early returns, assertions that are true on empty output.
+
+- Source-text proof: greps over source code, copied inventories, or assertions on call shape. It breaks on identifier-only refactors and proves nothing about behavior.
+- Fabricated fixtures: a fixture that invents receipts, ordering, or a persistence path the real code never writes. The test passes against a fiction.
 
 ## Mocking
 
