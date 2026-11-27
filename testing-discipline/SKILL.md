@@ -60,5 +60,5 @@ Design boundaries for this: pass external dependencies in rather than creating t
 - Derive them from the requirement, never from the implementation. An intent test written from the agent's own reading of the code is circular: it locks the agent's misunderstanding in as the target.
 - Keep them few: the main path of the requirement, plus at most the critical failure paths. Do not chase coverage with them, and do not grow them as the implementation grows.
 - Change them only when the requirement changes. An intent test that fails after a pure refactor is testing the wrong level.
-- Write them as acceptance scenarios before the code: name them for the user-visible capability, in Given / When / Then form where the framework allows, so a user or PM can read them. Never write the scenario after the code by reading the implementation back — that proves the code matches itself.
+- Write them as acceptance scenarios: name them for the user-visible capability, in Given / When / Then form where the framework allows, so a user or PM can read them. Never write a scenario by reading the implementation back — that proves the code matches itself.
 - Run them in tiers: on each change, run the tests the change and its dependencies actually touch; run the full set periodically and at milestones. A two-line change must not wait on the whole suite.
